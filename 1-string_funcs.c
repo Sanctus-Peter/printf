@@ -94,3 +94,26 @@ int get_index(char *s, char c)
 			return (i - 1);
 	return (-1);
 }
+
+/**
+ * reversed - reverses a string
+ * @s: pointer to string
+ *
+ * Return: pointer to s
+ */
+char *reversed(char *s)
+{
+	int tmp, i = 0, j = 0;
+
+	if (!s)
+		return (0);
+	while (s[i])
+		i++;
+	for (i--; i > j; j++, i--)
+	{
+		tmp = s[i];
+		s[i] = s[j];
+		s[j] = tmp;
+	}
+	return (s);
+}
