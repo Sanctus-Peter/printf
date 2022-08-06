@@ -10,9 +10,9 @@
  * @format: pointer to the format specifier
  */
 
-void unsignedNumberToString(uint64_t number, int base, char *buf, char *format)
+void unsignedNumberToString(uint64_t number, int base, char *buf, const char *format, int count)
 {
-	char tmp[65];
+	char tmp[1024];
 	int rem, i = 0, j = 0;
 
 	if (number == 0)
@@ -26,7 +26,7 @@ void unsignedNumberToString(uint64_t number, int base, char *buf, char *format)
 	{
 		rem = number % base;
 		if (rem >= 10)
-			tmp[i++] = (*format == 'X') ? 'A' + (rem - 10) : 'a' + (rem - 10);
+			tmp[i++] = (format[count] == 'X') ? 'A' + (rem - 10) : 'a' + (rem - 10);
 		else
 			tmp[i++] = '0' + rem;
 
@@ -46,7 +46,7 @@ void unsignedNumberToString(uint64_t number, int base, char *buf, char *format)
  * @format: pointer to the format specifier
  */
 
-void signedNumberToString(int64_t number, int base, char *buf, char *format)
+void signedNumberToString(int64_t number, int base, char *buf, const char *format, int count)
 {
 	if (number < 0)
 	{
@@ -54,5 +54,5 @@ void signedNumberToString(int64_t number, int base, char *buf, char *format)
 		number *= -1;
 	}
 
-	unsignedNumberToString(number, base, buf, format);
+	unsignedNumberToString(number, base, buf, format, count);
 }

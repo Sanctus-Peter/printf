@@ -2,8 +2,6 @@
 #include <stdarg.h>
 #include <stdint.h>
 
-int _vprintf(const char *, va_list);
-int setFlags(char *, int *, int, va_list *);
 
 /**
  * _printf - function to print output to the console
@@ -37,8 +35,9 @@ int _printf(const char *format, ...)
 int _vprintf(const char *format, va_list args)
 {
 	/* to keep track of format specifier */
-	int state = 0, tmp_count, print_count, flag[5], is_long = 0, reset = 1;
-	int count = 0, reset_flag, identifier_printed, *ptr = &is_long;
+	int state = 0, tmp_count, flag[5], is_long = 0, is_short = 0, reset = 1;
+	int count = 0, reset_flag, print_count, identifier_printed;
+	int *resetPtr = &reset, *ptr = &is_long, *shortPtr = &is_short;
 
 	while (format[count])
 	{
@@ -57,12 +56,13 @@ int _vprintf(const char *format, va_list args)
 		{
 			if (isAlpha(format[count]))
 			{
-				identifier_printed = format_specififer(format, args, reset, *ptr, flag);
+				identifier_printed = format_specifier(count, format, args, resetPtr, ptr, shortPtr,  flag);
 				
 				if(reset_flag == 1)
 				{
 					state = 0;
 					is_long = 0;
+					is_short = 0;
 				}
 				else
 					reset_flag = 1;
@@ -79,4 +79,3 @@ int _vprintf(const char *format, va_list args)
 	}
 	return (print_count);
 }
-
