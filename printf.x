@@ -43,8 +43,6 @@ int _vprintf(const char *format, va_list g_ar)
 	va_copy(args, g_ar);
 	while (format[count])
 	{
-		flag[0] = flag[1] = flag[2]
-			= flag[3] = flag[4];
 		if (state == 0)
 		{
 			if (format[count] == '%')
@@ -74,6 +72,8 @@ int _vprintf(const char *format, va_list g_ar)
 			}
 			else
 			{
+
+				flag[0] = flag[1] = flag[2] = flag[3] = flag[4] = 0;
 				tmp_count = setFlags(format, flag, count, &args);
 				count += tmp_count;	
 			}
