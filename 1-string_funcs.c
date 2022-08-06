@@ -30,7 +30,7 @@ int print_string(char *str, int *flags, int n)
 	pad = flags[2] ? '0' : ' ';
 	if (count > i && (str[0] == '+' || str[0] == '-' || str[0] == ' ') && n)
 	{
-		_putchar(src[0]);
+		_putchar(str[0]);
 		j++;
 		flags[4]--;
 	}

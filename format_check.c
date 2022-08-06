@@ -14,17 +14,18 @@
 
 int format_specifier(int count, const char *format, va_list args, int *reset, int *ptr_is_long, int *ptr_is_short, int *flags)
 {
-	int n, print_count;
-	char ch, *s, buffer[1024];
+	int n, print_count = 0;
+	char ch, *s, *buffer;
 
+	buffer = malloc(1024);
 	switch (format[count])
 	{
 		case 'd':
 			{
 				if (*ptr_is_long)
 					n = va_arg(args, long);
-				else if (*ptr_is_short)
-					n = va_arg(args, short);
+				/* else if (*ptr_is_short)
+					n = va_arg(args, short);*/
 				else
 					n = va_arg(args, int);
 				signedNumberToString(n, DECIMAL, buffer, format, count);
@@ -57,8 +58,8 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 			{
 				if (*ptr_is_long)
 					n = va_arg(args, long);
-				else if (*ptr_is_short)
-					n = va_arg(args, short);
+				/* else if (*ptr_is_short)
+					n = (short int)va_arg(args, int);*/
 				else
 					n = va_arg(args, int);
 				unsignedNumberToString(n, HEX, buffer, format, count);
@@ -69,8 +70,8 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 			{
 				if (*ptr_is_long)
 					n = va_arg(args, long);
-				else if (*ptr_is_short)
-					n = va_arg(args, short);
+				/*else if (*ptr_is_short)
+					n = va_arg(args, short);*/
 				else
 					n = va_arg(args, int);
 				unsignedNumberToString(n, HEX, buffer, format, count);
@@ -81,8 +82,8 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 			{
 				if (*ptr_is_long)
 					n = va_arg(args, long);
-				else if (*ptr_is_short)
-					n = va_arg(args, short);
+				/*else if (*ptr_is_short)
+					n = va_arg(args, short);*/
 				else
 					n = va_arg(args, int);
 				unsignedNumberToString(n, OCTAL, buffer, format, count);
@@ -93,8 +94,8 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 			{
 				if (*ptr_is_long)
 					n = va_arg(args, long);
-				else if (*ptr_is_short)
-					n = va_arg(args, short);
+				/*else if (*ptr_is_short)
+					n = va_arg(args, short);*/
 				else
 					n = va_arg(args, int);
 				unsignedNumberToString(n, DECIMAL, buffer, format, count);
@@ -141,8 +142,8 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 			{
 				if (*ptr_is_long)
 					n = va_arg(args, long);
-				else if (*ptr_is_short)
-					n = va_arg(args, short);
+				/*else if (*ptr_is_short)
+					n = va_arg(args, short);*/
 				else
 					n = va_arg(args, int);
 				signedNumberToString(n, DECIMAL, buffer, format, count);
@@ -164,5 +165,6 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 				break;
 			}
 	}
+	free(buffer);
 	return (print_count);
 }

@@ -74,8 +74,8 @@ int setFlags(const char *fmt, int *flags, int j, va_list *args)
 		flags[4] = 0;
 	while (isDigit(fmt[i]))
 	{
-		fmt[4] *= 10;
-		fmt[4] += fmt[i++] - '0';
+		flags[4] *= 10;
+		flags[4] += fmt[i++] - '0';
 	}
 	return (i - j);
 }

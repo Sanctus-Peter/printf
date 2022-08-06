@@ -1,10 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include<stdarg.h>
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdint.h>
-
+#include <stdlib.h>
 
 #define DECIMAL 10
 #define HEX 16
@@ -25,5 +24,6 @@ void signedNumberToString(int64_t, int, char *, const char *, int);
 void unsignedNumberToString(uint64_t, int, char *, const char *, int);
 int _putchar(char);
 int format_specifier(int, const char *, va_list, int *, int *,  int *, int *);
+char *reversed(char *);
 
 #endif

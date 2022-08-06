@@ -33,9 +33,9 @@ void unsignedNumberToString(uint64_t number, int base, char *buf, const char *fo
 		number /= base;
 	}
 
-	for (j = i - 1; j >= 0; j--)
-		*buf++ = tmp[j];
-	*buf = '\0';
+	for (j = 0, i--; i >= 0; i--, j++)
+		buf[j] = tmp[i];
+	buf[j] = '\0';
 }
 
 /**

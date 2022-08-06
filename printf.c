@@ -32,15 +32,19 @@ int _printf(const char *format, ...)
  * Return: bytes of element printed, -1 if no parameter is supplied
  */
 
-int _vprintf(const char *format, va_list args)
+int _vprintf(const char *format, va_list g_ar)
 {
 	/* to keep track of format specifier */
 	int state = 0, tmp_count, flag[5], is_long = 0, is_short = 0, reset = 1;
 	int count = 0, reset_flag, print_count, identifier_printed;
 	int *resetPtr = &reset, *ptr = &is_long, *shortPtr = &is_short;
+	va_list args;
 
+	va_copy(args, g_ar);
 	while (format[count])
 	{
+		flag[0] = flag[1] = flag[2]
+			= flag[3] = flag[4];
 		if (state == 0)
 		{
 			if (format[count] == '%')
@@ -70,12 +74,13 @@ int _vprintf(const char *format, va_list args)
 			}
 			else
 			{
-				tmp_count = setFlags(format, flag, count, args);
+				tmp_count = setFlags(format, flag, count, &args);
 				count += tmp_count;	
 			}
 			print_count += identifier_printed;
 		}
 		count++;
 	}
+	va_end(args);
 	return (print_count);
 }
