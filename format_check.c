@@ -15,7 +15,9 @@
 int format_specifier(int count, const char *format, va_list args, int *reset, int *ptr_is_long, int *ptr_is_short, int *flags)
 {
 	int n, print_count = 0;
+	unsigned int n1;
 	char ch, *s, buffer[1024];
+	void *n2;
 
 	/*buffer = malloc(1024);*/
 	switch (format[count])
@@ -50,52 +52,51 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 			{
 				_putchar('0');
 				_putchar('x');
-				n = va_arg(args, int);
-				unsignedNumberToString(n, HEX, buffer, format, count);
+				n2 = va_arg(args, void *);
+				unsignedNumberToString((int64_t)n2, HEX, buffer, format, count);
 				print_count = print_string(buffer, flags, 1);
 				break;
 			}
 		case 'x':
 			{
 				if (*ptr_is_long)
-					n = va_arg(args, long);
+					n1 = va_arg(args, unsigned long);
 				/* else if (*ptr_is_short)
 					n = (short int)va_arg(args, int);*/
 				else
-					n = va_arg(args, int);
-				unsignedNumberToString(n, HEX, buffer, format, count);
+					n1 = va_arg(args, unsigned int);
+				unsignedNumberToString(n1, HEX, buffer, format, count);
 				print_count = print_string(buffer, flags, 1);
 				break;
 			}
 		case 'X':
 			{
 				if (*ptr_is_long)
-					n = va_arg(args, long);
+					n1 = va_arg(args, unsigned long);
 				/*else if (*ptr_is_short)
 					n = va_arg(args, short);*/
 				else
-					n = va_arg(args, int);
-				unsignedNumberToString(n, HEX, buffer, format, count);
+					n1 = va_arg(args, unsigned int);
+				unsignedNumberToString(n1, HEX, buffer, format, count);
 				print_count = print_string(buffer, flags, 1);
 				break;
 			}
 		case 'o':
 			{
 				if (*ptr_is_long)
-					n = va_arg(args, long);
+					n1 = va_arg(args, unsigned long);
 				/*else if (*ptr_is_short)
 					n = va_arg(args, short);*/
 				else
-					n = va_arg(args, int);
-				unsignedNumberToString(n, OCTAL, buffer, format, count);
+					n1 = va_arg(args, unsigned int);
+				unsignedNumberToString(n1, OCTAL, buffer, format, count);
 				print_count = print_string(buffer, flags, 1);
 				break;
 			}
 		case 'u':
 			{
-				n = va_arg(args, unsigned int);
-				printf("%u\n", n);
-				unsignedNumberToString(n, DECIMAL, buffer, format, count);
+				n1 = va_arg(args, unsigned int);
+				unsignedNumberToString(n1, DECIMAL, buffer, format, count);
 				print_count = print_string(buffer, flags, 1);
 				break;
 			}

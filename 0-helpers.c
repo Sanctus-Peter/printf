@@ -41,7 +41,7 @@ int isDigit(char c)
  *
  * Return: number of chars checked
  */
-int setFlags(const char *fmt, int *flags, int j, va_list *args)
+int setFlags(const char *fmt, int *flags, int j, va_list args)
 {
 	int i = j;
 
@@ -63,7 +63,7 @@ int setFlags(const char *fmt, int *flags, int j, va_list *args)
 			flags[3] = 1;
 			break;
 		case '*':
-			flags[4] = va_arg(*args, int);
+			flags[4] = va_arg(args, int);
 			break;
 		default:
 			break;
