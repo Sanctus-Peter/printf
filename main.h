@@ -11,7 +11,9 @@
 #define OCTAL 8
 #define BINARY 2
 
-
+char *upper_str(char *);
+int isPrintable(char);
+int upper_strlen(char *);
 int _printf(const char *format, ...);
 int isDigit(char);
 int isAlpha(char);
