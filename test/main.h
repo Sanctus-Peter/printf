@@ -12,10 +12,10 @@
 #define BINARY 2
 
 /**
- * specifierStruct - struct to hold all specifier
- *
+ * struct specifierStruct - struct to hold all specifier
+ * @specifier: character pointer
+ * @func: callback funtion
  */
-
 typedef struct specifierStruct
 {
 	char *specifier;
