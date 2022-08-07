@@ -24,6 +24,8 @@ int print_string(char *str, int *flags, int n)
 	int i = 0, j = 0, count;
 	char pad;
 
+	if (!str)
+		return (0);
 	while (str[i])
 		i++;
 	count = flags[4] > i ? flags[4] : i;
@@ -65,6 +67,8 @@ char *rot13(char *s)
 	int x = 0, index;
 	char *chars = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
 
+	if (!s)
+		return (0);
 	while (s[x])
 	{
 		index = get_index(chars, s[x]);
@@ -103,17 +107,19 @@ int get_index(char *s, char c)
  */
 char *reversed(char *s)
 {
-	int tmp, i = 0, j = 0;
+	int x = 0, i;
+	char tmp;
 
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	for (i--; i > j; j++, i--)
+	/* get the length os s */
+	while (s[x++] != '\0')
+		continue;
+	x--;
+	/* reverse the string */
+	for (i = 0; i < x / 2; i++)
 	{
 		tmp = s[i];
-		s[i] = s[j];
-		s[j] = tmp;
+		s[i] = s[x - i - 1];
+		s[x - i - 1] = tmp;
 	}
 	return (s);
 }
