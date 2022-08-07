@@ -47,8 +47,7 @@ int main(void)
     len2 = printf("Percent:[%%]\n");
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
-    /*_printf("Unknown:[%r]\n\n", "mahadi");
-    _printf("rev: [%s]", reversed("mahadi"));*/
+    _printf("Unknown:[%r]\n\n", "mahadi");
     _printf("Unknown:[%R]\n\n", "mahadi");
 
     print_string(my, f, 1);
