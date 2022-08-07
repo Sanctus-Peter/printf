@@ -56,7 +56,7 @@ int _vprintf(const char *format, va_list args)
 		}
 		else
 		{
-			if (isAlpha(format[count]))
+			if (isAlpha(format[count]) || format[count] == '%')
 			{
 				identifier_printed = format_specifier(count, format, args, resetPtr, ptr, shortPtr,  flag);
 				

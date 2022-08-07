@@ -16,6 +16,8 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
+	if (format == NULL)
+		return (-1);
 	val = _vprintf(format, args);
 	va_end(args);
 
@@ -34,13 +36,10 @@ int _printf(const char *format, ...)
 
 int _vprintf(const char *format, va_list args)
 {
-	/* to keep track of format specifier */
-	int state = 0, tmp_count, flag[5], is_long = 0, is_short = 0, reset = 1;
-	int count = 0, print_count = 0, identifier_printed;
-	int *resetPtr = &reset, *ptr = &is_long, *shortPtr = &is_short;
-	/*va_list args;*/
+	int state = 0, flag[5] = {0, 0, 0, 0, 0}, is_long = 0, is_short = 0;
+	int count = 0, print_count = 0, identifier_printed, reset = 1;
+	int *resetPtr = &reset, *ptr = &is_long, *shortPtr = &is_short, tmp_count;
 
-	/*va_copy(args, g_ar);*/
 	while (format[count])
 	{
 		if (state == 0)
@@ -49,22 +48,19 @@ int _vprintf(const char *format, va_list args)
 				state = 1;
 			else
 			{
-				_putchar(format[count]);
-				print_count++;
+				print_count += _putchar(format[count]);
 			}
 			count++;
 		}
 		else
 		{
-			if (isAlpha(format[count]))
+			if (isAlpha(format[count]) || format[count] == '%')
 			{
-				identifier_printed = format_specifier(count, format, args, resetPtr, ptr, shortPtr,  flag);
-				
-				if(reset == 1)
+				identifier_printed = format_specifier(count, format, args,
+						resetPtr, ptr, shortPtr,  flag);
+				if (reset == 1)
 				{
-					state = 0;
-					is_long = 0;
-					is_short = 0;
+					state = is_long = is_short = 0;
 				}
 				else
 					reset = 1;
@@ -72,14 +68,11 @@ int _vprintf(const char *format, va_list args)
 			}
 			else
 			{
-
-				flag[0] = flag[1] = flag[2] = flag[3] = flag[4] = 0;
 				tmp_count = setFlags(format, flag, count, args);
-				count += tmp_count;	
+				count += tmp_count;
 			}
 			print_count += identifier_printed;
 		}
-		/* count++; */
 	}
 	va_end(args);
 	return (print_count);

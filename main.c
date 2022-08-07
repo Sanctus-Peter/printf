@@ -11,7 +11,7 @@
 int main(void)
 {
     int len;
-    int len2;
+/*    int len2;
     unsigned int ui;
     void *addr;
     char buff[30];
@@ -42,15 +42,16 @@ int main(void)
     _printf("String:[%s]\n", "I am a string !");
     printf("String:[%s]\n", "I am a string !");
     _printf("Address:[%p]\n", addr);
-    printf("Address:[%p]\n", addr);
+    printf("Address:[%p]\n", addr);*/
     len = _printf("Percent:[%%]\n");
-    len2 = printf("Percent:[%%]\n");
+ /*   len2 = printf("Percent:[%%]\n"); */
     _printf("Len:[%d]\n", len);
-    printf("Len:[%d]\n", len2);
-    _printf("Unknown:[%r]\n\n");
+/*    printf("Len:[%d]\n", len2);
+    _printf("Unknown:[%r]\n\n", "mahadi");
+    _printf("Unknown:[%R]\n\n", "mahadi");
 
     print_string(my, f, 1);
 signedNumberToString(234,16,buff, "X", 0);
-    _printf("\nTesting: %s\n", buff);
+    _printf("\nTesting: %s\n", buff);*/
     return (0);
 }
