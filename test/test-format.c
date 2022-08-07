@@ -1,10 +1,22 @@
 #include "main.h"
 
+/**
+ * format_specifier - function to check for specifier
+ * @count: current position of the string pointed to by format
+ * @format: pointer to the string to be printed
+ * @args: retrieved arguement
+ * @reset: to reset the flag
+ * @ptr_is_long: to set the long variable to 1
+ * @ptr_is_short: to set variable to short
+ * @flags: flag
+ * Return: the length of string printed
+ */
+
 int format_specifier(int count, const char *format, va_list args, int *reset,
 		int *ptr_is_long, int *ptr_is_short, int *flags)
 {
 	int i, print_count = 0;
-	char ch, *testDefault = "sdiupxXobprR";
+	char ch, *testDefault = "sdicuSpxXobprR";
 
 	switch (format[count])
 	{
@@ -20,17 +32,9 @@ int format_specifier(int count, const char *format, va_list args, int *reset,
 				*reset = 0;
 				break;
 			}
-		case 'c':
-			{
-				ch = va_arg(args, int);
-				_putchar(ch);
-				print_count++;
-				break;
-			}
 		case '%':
 			{
-				_putchar('%');
-				print_count++;
+				print_count += _putchar('%');
 				break;
 			}
 		default:
@@ -40,18 +44,25 @@ int format_specifier(int count, const char *format, va_list args, int *reset,
 					if (format[count] == testDefault[i])
 						goto stop;
 				}
-				_putchar('%');
+				print_count += _putchar('%');
 				ch = va_arg(args, int);
-				_putchar(ch);
-				print_count += 2;
+				print_count += _putchar(ch);
 				break;
 			}
 	}
 stop:
 	print_count += check_specifier(format, count, args, flags);
-
 	return (print_count);
 }
+
+/**
+ * check_specifier - checks format specifier
+ * @format: pointer to string
+ * @count: current position of string
+ * @args: arguement retrieved
+ * @flags: flag
+ * Return: length of string printed
+ */
 
 int check_specifier(const char *format, int count, va_list args, int *flags)
 {
@@ -60,8 +71,10 @@ int check_specifier(const char *format, int count, va_list args, int *flags)
 
 	specifierStruct specifierFunc[] = {
 		{"s", print_str},
+		{"S", print_str},
 		{"d", print_int},
 		{"i", print_int},
+		{"c", print_char},
 		{"u", print_unsigned},
 		{"p", print_addr},
 		{"x", print_unsigned},
@@ -73,10 +86,32 @@ int check_specifier(const char *format, int count, va_list args, int *flags)
 		{NULL, NULL}
 	};
 
-	for (func_index = 0; specifierFunc[func_index].specifier != NULL; func_index++)
+	for (func_index = 0; specifierFunc[func_index].specifier != NULL;
+			func_index++)
 	{
 		if (specifierFunc[func_index].specifier[0] == specifierFormat)
 			return (specifierFunc[func_index].func(format, count, args, flags));
 	}
 	return (0);
+}
+
+
+/**
+ * print_char - prints a string
+ * @format: formats in str
+ * @count: current index
+ * @args: argument list
+ * @flag: flags array
+ *
+ * Return: number of characters printed
+ */
+int print_char(const char *format, int count, va_list args, int *flag)
+{
+	char ch;
+	const char *tmp = format;
+
+	count = 0;
+	(void) tmp;
+	ch = va_arg(args, int);
+	return (_putchar(ch));
 }

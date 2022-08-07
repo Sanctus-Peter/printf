@@ -1,6 +1,44 @@
 #include "main.h"
 
 /**
+ * print_str - prints a string
+ * @format: formats in str
+ * @count: current index
+ * @args: argument list
+ * @flag: flags array
+ *
+ * Return: number of characters printed
+ */
+int print_str(const char *format, int count, va_list args, int *flag)
+{
+	char *s;
+
+	s = va_arg(args, char *);
+	s = (format[count] == 's') ? s : upper_str(s);
+	return (print_string(s, flag, count));
+}
+
+/**
+ * print_int - prints a string
+ * @format: formats in str
+ * @count: current index
+ * @args: argument list
+ * @flag: flags array
+ *
+ * Return: number of characters printed
+ */
+int print_int(const char *format, int count, va_list args, int *flag)
+{
+	long n;
+	char buffer[1024];
+
+	n = va_arg(args, int);
+	signedNumberToString(n, DECIMAL, buffer, format, count);
+
+	return (print_string(buffer, flag, 1));
+
+}
+/**
  * isAlpha - check if a char is alphabet
  * @c: chracter to check
  *
