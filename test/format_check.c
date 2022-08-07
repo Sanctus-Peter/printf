@@ -20,6 +20,7 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 	/*buffer = malloc(1024);*/
 	switch (format[count])
 	{
+		case 'u':
 		case 'i':
 		case 'd':
 			{
@@ -58,11 +59,11 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 		case 'x':
 			{
 				if (*ptr_is_long)
-					n = va_arg(args, long);
+					n = va_arg(args, unsigned long);
 				/* else if (*ptr_is_short)
 					n = (short int)va_arg(args, int);*/
 				else
-					n = va_arg(args, int);
+					n = va_arg(args, unsigned int);
 				unsignedNumberToString(n, HEX, buffer, format, count);
 				print_count = print_string(buffer, flags, 1);
 				break;
@@ -70,11 +71,11 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 		case 'X':
 			{
 				if (*ptr_is_long)
-					n = va_arg(args, long);
+					n = va_arg(args, unsigned long);
 				/*else if (*ptr_is_short)
 					n = va_arg(args, short);*/
 				else
-					n = va_arg(args, int);
+					n = va_arg(args, unsigned int);
 				unsignedNumberToString(n, HEX, buffer, format, count);
 				print_count = print_string(buffer, flags, 1);
 				break;
@@ -82,20 +83,12 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 		case 'o':
 			{
 				if (*ptr_is_long)
-					n = va_arg(args, long);
+					n = va_arg(args, unsigned long);
 				/*else if (*ptr_is_short)
 					n = va_arg(args, short);*/
 				else
-					n = va_arg(args, int);
+					n = va_arg(args, unsigned int);
 				unsignedNumberToString(n, OCTAL, buffer, format, count);
-				print_count = print_string(buffer, flags, 1);
-				break;
-			}
-		case 'u':
-			{
-				n = va_arg(args, unsigned int);
-				printf("%u\n", n);
-				unsignedNumberToString(n, DECIMAL, buffer, format, count);
 				print_count = print_string(buffer, flags, 1);
 				break;
 			}
