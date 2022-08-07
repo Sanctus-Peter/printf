@@ -15,10 +15,10 @@ int print_str(const char *format, int count, va_list args, int *flag)
 
 int print_int(const char *format, int count, va_list args, int *flag)
 {
-	int64_t n;
+	int n;
 	char buffer[1024];
 
-	n = va_arg(args, int64_t);
+	n = va_arg(args, long);
 	signedNumberToString(n, DECIMAL, buffer, format, count);
 
 	return (print_string(buffer, flag, 1));
