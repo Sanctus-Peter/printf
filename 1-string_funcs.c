@@ -24,6 +24,8 @@ int print_string(char *str, int *flags, int n)
 	int i = 0, j = 0, count;
 	char pad;
 
+	if (!str)
+		return (0);
 	while (str[i])
 		i++;
 	count = flags[4] > i ? flags[4] : i;
@@ -64,7 +66,16 @@ char *rot13(char *s)
 {
 	int x = 0, index;
 	char *chars = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+	char *res;
 
+	if (!s)
+		return (0);
+	while (s[x])
+		x++;
+	res = malloc((x + 1) * sizeof(char));
+	if (!res)
+		return (0);
+	x = 0;
 	while (s[x])
 	{
 		index = get_index(chars, s[x]);
@@ -72,11 +83,15 @@ char *rot13(char *s)
 		{
 			/* rotate */
 			index = (index + 26) % 52;
-			s[x] = chars[index];
+			res[x] = chars[index];
+		}
+		else
+		{
+			res[x] = s[x];
 		}
 		x++;
 	}
-	return (s);
+	return (res);
 }
 
 /**
@@ -103,17 +118,21 @@ int get_index(char *s, char c)
  */
 char *reversed(char *s)
 {
-	int tmp, i = 0, j = 0;
+	int x = 0, i = 0;
+	char *tmp;
 
 	if (!s)
 		return (0);
-	while (s[i])
-		i++;
-	for (i--; i > j; j++, i--)
-	{
-		tmp = s[i];
-		s[i] = s[j];
-		s[j] = tmp;
-	}
-	return (s);
+	/* get the length os s */
+	while (s[x])
+		x++;
+	tmp = malloc((x +1) * sizeof(char));
+	if (!tmp)
+		return (0);
+	x--;
+	/* reverse the string */
+	while (x >= 0)
+		tmp[i++] = s[x--];
+	tmp[i] = '\0';
+	return (tmp);
 }
