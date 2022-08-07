@@ -48,7 +48,7 @@ int format_specifier(int count, const char *format, va_list args, int *reset,
 			}
 	}
 stop:
-	print_count = check_specifier(format, count, args, flags);
+	print_count += check_specifier(format, count, args, flags);
 
 	return (print_count);
 }
