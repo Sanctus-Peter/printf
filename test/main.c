@@ -20,6 +20,7 @@ int main(void)
 	char *ptr = "hello";
 	int (*ptr_func)(char *) = upper_strlen;
 
+	_printf("%b, %b, %b\n", 98, INT_MAX, 1001101);
 	printf("testing pointers: %p, %p, %p \n", ptr, ptr_func, NULL);
 	_printf("testing pointers: %p, %p, %p\n", ptr, ptr_func, NULL);
 	len = _printf("Characters: %c %c, %cdone.\n", 'a', NULL, 78);

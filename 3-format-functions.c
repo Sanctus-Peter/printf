@@ -61,12 +61,12 @@ int print_addr(const char *format, int count, va_list args, int *flag)
  */
 int print_oct_bin(const char *format, int count, va_list args, int *flag)
 {
-	uint64_t n;
+	unsigned int n;
 	char buffer[1024];
 	int base;
 
 	base = (format[count] == 'b') ? BINARY : OCTAL;
-	n = va_arg(args, uint64_t);
+	n = va_arg(args, unsigned int);
 	unsignedNumberToString(n, base, buffer, format, count);
 	return (print_string(buffer, flag, 1));
 
