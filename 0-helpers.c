@@ -18,8 +18,7 @@ int print_str(const char *format, int count, va_list args, int *flag)
 	if (s == NULL)
 		return (print_string("(null)", flag, count));
 	s = (format[count] == 's') ? s : upper_str(s);
-	for (retval = 0; s[retval] != '\0'; retval++)
-		_putchar(s[retval]);
+	retval = print_string(s, flag, count);
 	/*free(s);*/
 	return (retval);
 }
