@@ -92,12 +92,14 @@ int main(void)
     len3 =  printf("Unsigned hexadecimal:[%x, %x, %X]\n", ui, NULL, ui);
     _printf("Length:[%d, %i]\n", len, len2);
 	printf("Length:[%d, %i]\n", len1, len3);
-	_printf("String:[%s, %s]\n", "I am a string !", NULL);
-    printf("String:[%s, %s]\n", "I am a string !", NULL);
+	len = _printf("String:[%s, %s]\n", "I am a string !", NULL);
+    len1 = printf("String:[%s, %s]\n", "I am a string !", NULL);
+	printf("%d\n", len1);
+	_printf("%d\n", len);
     _printf("Address:[%p]\n", addr);
     printf("Address:[%p]\n", addr);
-    len = _printf("Percent:[%%]\n");
-    len2 = printf("Percent:[%%]\n");
+    len = _printf("Percent:[%c%%%c%%]\n", 'g', 'r');
+    len2 = printf("Percent:[%c%%%c%%]\n", 'g', 'r');
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
     _printf("Unknown:[%r]\n", "mahadi");
