@@ -17,7 +17,11 @@ int main(void)
     char buff[30];
     char *my = "+12345";
     int f[5] = {0,0,1,0,15};
+	char *ptr = "hello";
+	int (*ptr_func)(char *) = upper_strlen;
 
+	printf("testing pointers: %p, %p \n", ptr, ptr_func);
+	_printf("testing pointers: %p, %p \n", ptr, ptr_func);
 	_printf("Characters: %c %c done.\n", 'a', 65);
 	_printf("Decimals: %d %ld done\n", 1977, 650000L);
 	_printf("Some different radicals: %d %x %X done.\n", 100, 100, 100);
