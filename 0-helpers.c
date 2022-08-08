@@ -77,6 +77,7 @@ int isDigit(char c)
  * flags[2]: is set if (0) is found
  * flags[3]: is set if (#) is found
  * flags[4]: is set if (digits) is found
+ * flags[5]: is set if (precision) is found
  *
  * @flags: pointer to flags array
  * @fmt: pointer to format strings
@@ -89,8 +90,9 @@ int setFlags(const char *fmt, int *flags, int j, va_list args)
 {
 	int i = j;
 
-	flags[0] = flags[1] = flags[2] = flags[3] = flags[4] = 0;
-	while ((!isDigit(fmt[i]) && !isAlpha(fmt[i])) || fmt[i] == '0')
+	flags[0] = flags[1] = flags[2] =
+		flags[3] = flags[4] = flags[5] = 0;
+	while ((!isDigit(fmt[i]) && !isAlpha(fmt[i]) && fmt[i] != '.') || fmt[i] == '0')
 	{
 		switch (fmt[i])
 		{
@@ -117,10 +119,11 @@ int setFlags(const char *fmt, int *flags, int j, va_list args)
 	}
 	if (isDigit(fmt[i]))
 		flags[4] = 0;
-	while (isDigit(fmt[i]))
+	i += getDigitsValue(fmt, &flags[4], i);
+	if (fmt[i] == '.')
 	{
-		flags[4] *= 10;
-		flags[4] += fmt[i++] - '0';
+		i++;
+		i += getDigitsValue(fmt, &flags[5], i);
 	}
 	return (i - j);
 }

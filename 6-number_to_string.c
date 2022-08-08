@@ -73,3 +73,22 @@ void signedNumberToString(int64_t number, int base, char *buf,
 
 	unsignedNumberToString(number, base, buf, fmt, flags);
 }
+
+/**
+ * getDigitsValue - gets the value of digits
+ * @fmt: pointer to string
+ * @res: start index
+ *
+ * Return: value
+ */
+int getDigitsValue(const char *fmt, int *res, int index)
+{
+	int i = index;
+	
+	while (isDigit(fmt[i]))
+	{
+		*res *= 10;
+		*res += fmt[i++] - '0';
+	}
+	return (i - index);
+}

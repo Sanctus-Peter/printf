@@ -46,7 +46,7 @@ int main(void)
 	_printf("fasdf\n %s\n %c\n %s\n %s\n %s\n %i\n %b\n\n\n", s, c, s2, s3, s4, i, b);
 	printf("fasdf\n %s\n %c\n %s\n %s\n %s\n %i\n\n\n", s, c, s2, s3, s4, i);
 	_printf("--------------\n\n");
-	_printf("%b\n", 98);
+/*	_printf("%b\n", 98); */
 	_printf("--------------\n\n\n");
 
 	len = printf("%u\n", a);
@@ -54,10 +54,10 @@ int main(void)
 	printf("%i\n", len);
 	_printf("%i\n", len1);
 	_printf("%b, %b, %b\n", 98, INT_MAX, 1001101);
-	printf("testing pointers: %p, %p, %p \n", ptr, ptr_func, NULL);
+	/*printf("testing pointers: %p, %p, %p \n", ptr, ptr_func, NULL); */
 	_printf("testing pointers: %p, %p, %p\n", ptr, ptr_func, NULL);
 	len = _printf("Characters: %c %c, %cdone.\n", 'a', NULL, 78);
- 	len2 = printf("Characters: %c %c, %cdone.\n", 'a', NULL, 78);
+ 	/* len2 = printf("Characters: %c %c, %cdone.\n", 'a', NULL, 78); */
 	_printf("Length:[%d, %i]\n", len, len);
 	printf("Length:[%d, %i]\n", len2, len2);
 	_printf("Decimals: %d %ld done\n", 1977, 650000L);
@@ -74,7 +74,7 @@ int main(void)
     printf("testing other possible integer: %d %d\n", INT_MAX, INT_MIN);
 	len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");
-    len4 = printf(NULL);
+    /* len4 = printf(NULL); */
 	len3 = _printf(NULL);
 	printf("%d\n", len4);
 	_printf("%d\n", len3);
@@ -87,13 +87,13 @@ int main(void)
     _printf("Unsigned:[%u, %u]\n", ui, INT_MIN);
     printf("Unsigned:[%u, %u]\n", ui, INT_MIN);
     len = _printf("Unsigned octal:[%o, %o]\n", ui, NULL);
-    len1 = printf("Unsigned octal:[%o, %o]\n", ui, NULL);
+   /* len1 = printf("Unsigned octal:[%o, %o]\n", ui, NULL); */
     len2 = _printf("Unsigned hexadecimal:[%x, %x, %X]\n", ui, NULL, ui);
-    len3 =  printf("Unsigned hexadecimal:[%x, %x, %X]\n", ui, NULL, ui);
+    /* len3 =  printf("Unsigned hexadecimal:[%x, %x, %X]\n", ui, NULL, ui); */
     _printf("Length:[%d, %i]\n", len, len2);
 	printf("Length:[%d, %i]\n", len1, len3);
 	len = _printf("String:[%s, %s]\n", "I am a string !", NULL);
-    len1 = printf("String:[%s, %s]\n", "I am a string !", NULL);
+   /*  len1 = printf("String:[%s, %s]\n", "I am a string !", NULL); */
 	printf("%d\n", len1);
 	_printf("%d\n", len);
     _printf("Address:[%p]\n", addr);
@@ -116,6 +116,7 @@ int main(void)
     _printf("space and +: [% 05d, %+i, %+10d]\n", 255, 255, 255);
     printf("width: [%6X, %6x, %10s]\n",5, -4568,"ab");
     _printf("width: [%6X, %6x, %10s]\n",5, -4568,"ab");
+    _printf("precision: [%012.4d, %.5i, %.1u]\n", 231, 4, 67);
 
     return (0);
 }

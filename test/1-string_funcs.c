@@ -28,10 +28,11 @@ int print_string(char *str, int *flags, int n)
 		return (0);
 	while (str[i])
 		i++;
+	i = flags[5] ? i + flags[5] + 1 : i;
 	count = flags[4] > i ? flags[4] : i;
 	pad = flags[2] ? '0' : ' ';
-	if (count > i &&
-			(str[0] == '+' || str[0] == '-' || str[0] == ' ') && n && flags[2])
+	if (count > i && n && flags[2] &&
+			(str[0] == '+' || str[0] == '-' || str[0] == ' '))
 	{
 		_putchar(str[0]);
 		j++;
@@ -47,6 +48,15 @@ int print_string(char *str, int *flags, int n)
 	/* print string */
 	while (str[j])
 		_putchar(str[j++]);
+	/* precision */
+	if (flags[5])
+		_putchar('.');
+	while (flags[5])
+	{
+		_putchar('0');
+		flags[5]--;
+		flags[4]--;
+	}
 	/* pad left alligmment */
 	while (flags[4] > i && flags[0])
 	{
