@@ -108,12 +108,12 @@ int check_specifier(const char *format, int count, va_list args, int *flags)
  */
 int print_char(const char *format, int count, va_list args, int *flag)
 {
-	unsigned int ch;
+	uint64_t ch;
 	const char *tmp = format;
 
 	(void) count;
 	(void) tmp;
 	(void) flag;
-	ch = va_arg(args, unsigned int);
+	ch = va_arg(args, uint64_t);
 	return (_putchar(ch));
 }
