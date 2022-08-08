@@ -19,7 +19,7 @@ int print_unsigned(const char *format, int count, va_list args, int *flag)
 
 	base = (format[count] == 'u') ? DECIMAL : HEX;
 	n = va_arg(args, uint64_t);
-	unsignedNumberToString(n, base, buffer, format, count);
+	unsignedNumberToString(n, base, buffer, format[count], flag);
 	return (print_string(buffer, flag, 1));
 
 
@@ -37,17 +37,17 @@ int print_unsigned(const char *format, int count, va_list args, int *flag)
 int print_addr(const char *format, int count, va_list args, int *flag)
 {
 	void *n;
-    char buffer[1024];
-    int print_count = 0;
+	char buffer[1024];
+	int print_count = 0;
 
 	n = va_arg(args, void *);
 	if (n == NULL)
-	    return (print_string("(nil)", flag, 1));
-    print_count += _putchar('0');
-    print_count += _putchar('x');
-    unsignedNumberToString((int64_t)n, HEX, buffer, format, count);
-    print_count += print_string(buffer, flag, 1);
-    return (print_count);
+		return (print_string("(nil)", flag, 1));
+	print_count += _putchar('0');
+	print_count += _putchar('x');
+	unsignedNumberToString((int64_t)n, HEX, buffer, format[count], flag);
+	print_count += print_string(buffer, flag, 1);
+	return (print_count);
 }
 
 /**
@@ -67,7 +67,7 @@ int print_oct_bin(const char *format, int count, va_list args, int *flag)
 
 	base = (format[count] == 'b') ? BINARY : OCTAL;
 	n = va_arg(args, unsigned int);
-	unsignedNumberToString(n, base, buffer, format, count);
+	unsignedNumberToString(n, base, buffer, format[count], flag);
 	return (print_string(buffer, flag, 1));
 
 }

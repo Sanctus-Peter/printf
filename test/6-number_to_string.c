@@ -7,16 +7,25 @@
  * @number: number to be converted
  * @base: base of the number
  * @buf: pointer to a buffer to hold the convert number for printing
- * @format: pointer to the format specifier
- * @count: current position of the the string pointed to by format
+ * @fmt: format chracter
+ * @flags: pointer to flags array
  */
 
 void unsignedNumberToString(uint64_t number, int base, char *buf,
-		const char *format, int count)
+		char fmt, int *flags)
 {
 	char tmp[1024];
 	int rem, i = 0, j = 0;
 
+	if (flags[3])
+	{
+		if (base == 8 || base == 16)
+		{
+			*buf++ = '0';
+			if (base == 16)
+				*buf++ = fmt;
+		}
+	}
 	if (number == 0)
 	{
 		*buf++ = '0';
@@ -28,7 +37,7 @@ void unsignedNumberToString(uint64_t number, int base, char *buf,
 	{
 		rem = number % base;
 		if (rem >= 10)
-			tmp[i++] = (format[count] == 'X') ? 'A' + (rem - 10) : 'a' + (rem - 10);
+			tmp[i++] = (fmt == 'X') ? 'A' + (rem - 10) : 'a' + (rem - 10);
 		else
 			tmp[i++] = '0' + rem;
 
@@ -45,18 +54,22 @@ void unsignedNumberToString(uint64_t number, int base, char *buf,
  * @number: number to be converted
  * @base: base of number
  * @buf: pointer to buffer to hold the converted number for printing
- * @format: pointer to the format specifier
- * @count: current position of the string pointed to by format
+ * @fmt: format chracter
+ * @flags: pointer to flags array
  */
 
 void signedNumberToString(int64_t number, int base, char *buf,
-		const char *format, int count)
+		char fmt, int *flags)
 {
 	if (number < 0)
 	{
 		*buf++ = '-';
 		number = -number;
 	}
+	else if (flags[1])
+	{
+		*buf++ = flags[1];
+	}
 
-	unsignedNumberToString(number, base, buf, format, count);
+	unsignedNumberToString(number, base, buf, fmt, flags);
 }

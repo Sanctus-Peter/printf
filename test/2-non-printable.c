@@ -8,9 +8,8 @@
  */
 char *upper_str(char *s)
 {
-	int x = 0, i = 0;
+	int x = 0, i = 0, a[5] = {0, 0, 0, 0, 0};
 	char *tmp, buff[3];
-	const char *fmt = "X";
 
 	if (!s)
 		return (0);
@@ -29,7 +28,7 @@ char *upper_str(char *s)
 		{
 			tmp[x++] = '\\';
 			tmp[x++] = 'x';
-			unsignedNumberToString(s[i], 16, buff, fmt, 0);
+			unsignedNumberToString(s[i], 16, buff, 'X', a);
 			if (buff[1] == '\0')
 			{
 				tmp[x++] = '0';
