@@ -36,13 +36,15 @@ int print_unsigned(const char *format, int count, va_list args, int *flag)
  */
 int print_addr(const char *format, int count, va_list args, int *flag)
 {
-	int64_t n;
+	void *n;
 	char buffer[1024];
 	int print_count = 0;
 
+	n = va_arg(args, void *);
+	if (n == NULL)
+		return (print_string("(nil)", flag, 1));
 	print_count += _putchar('0');
 	print_count += _putchar('x');
-	n = va_arg(args, int64_t);
 	unsignedNumberToString((int64_t)n, HEX, buffer, format, count);
 	print_count += print_string(buffer, flag, 1);
 	return (print_count);

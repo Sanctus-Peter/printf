@@ -20,8 +20,8 @@ int main(void)
 	char *ptr = "hello";
 	int (*ptr_func)(char *) = upper_strlen;
 
-	printf("testing pointers: %p, %p \n", ptr, ptr_func);
-	_printf("testing pointers: %p, %p \n", ptr, ptr_func);
+	printf("testing pointers: %p, %p, %p \n", ptr, ptr_func, NULL);
+	_printf("testing pointers: %p, %p, %p\n", ptr, ptr_func, NULL);
 	_printf("Characters: %c %c done.\n", 'a', 65);
 	_printf("Decimals: %d %ld done\n", 1977, 650000L);
 	_printf("Some different radicals: %d %x %X done.\n", 100, 100, 100);
