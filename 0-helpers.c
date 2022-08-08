@@ -16,7 +16,7 @@ int print_str(const char *format, int count, va_list args, int *flag)
 
 	s = va_arg(args, char *);
 	if (s == NULL)
-		return (print_string("(nil)", flag, count));
+		return (print_string("(null)", flag, count));
 	s = (format[count] == 's') ? s : upper_str(s);
 	retval = print_string(s, flag, count);
 	/*free(s);*/
