@@ -22,7 +22,10 @@ int main(void)
 
 	printf("testing pointers: %p, %p, %p \n", ptr, ptr_func, NULL);
 	_printf("testing pointers: %p, %p, %p\n", ptr, ptr_func, NULL);
-	_printf("Characters: %c %c done.\n", 'a', 65);
+	len = _printf("Characters: %c %c done.\n", 'a', 65);
+	len2 = printf("Characters: %c %c done.\n", 'a', 65);
+	_printf("Length:[%d, %i]\n", len, len);
+	printf("Length:[%d, %i]\n", len2, len2);
 	_printf("Decimals: %d %ld done\n", 1977, 650000L);
 	_printf("Some different radicals: %d %x %X done.\n", 100, 100, 100);
 	_printf("%s \n", "Alx is Amaizing");

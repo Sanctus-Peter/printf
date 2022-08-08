@@ -24,18 +24,18 @@ int format_specifier(int count, const char *format, va_list args, int *reset,
 			{
 				*ptr_is_long = 1;
 				*reset = 0;
-				break;
+				goto end;
 			}
 		case 'h':
 			{
 				*ptr_is_short = 1;
 				*reset = 0;
-				break;
+				goto end;
 			}
 		case '%':
 			{
 				print_count += _putchar('%');
-				break;
+				goto end;
 			}
 		default:
 			{
@@ -47,11 +47,12 @@ int format_specifier(int count, const char *format, va_list args, int *reset,
 				print_count += _putchar('%');
 				ch = va_arg(args, int);
 				print_count += _putchar(ch);
-				break;
+				goto end;
 			}
 	}
 stop:
 	print_count += check_specifier(format, count, args, flags);
+end:
 	return (print_count);
 }
 
