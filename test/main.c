@@ -10,8 +10,8 @@
  */
 int main(void)
 {
-    int len;
-    int len2;
+    int len, len3;
+    int len2, len4;
     unsigned int ui;
     void *addr;
     char buff[30];
@@ -22,8 +22,8 @@ int main(void)
 
 	printf("testing pointers: %p, %p, %p \n", ptr, ptr_func, NULL);
 	_printf("testing pointers: %p, %p, %p\n", ptr, ptr_func, NULL);
-	len = _printf("Characters: %c %c done.\n", 'a', 65);
-	len2 = printf("Characters: %c %c done.\n", 'a', 65);
+	len = _printf("Characters: %c %c, %cdone.\n", 'a', NULL, 78);
+	len2 = printf("Characters: %c %c, %cdone.\n", 'a', NULL, 78);
 	_printf("Length:[%d, %i]\n", len, len);
 	printf("Length:[%d, %i]\n", len2, len2);
 	_printf("Decimals: %d %ld done\n", 1977, 650000L);
@@ -32,10 +32,12 @@ int main(void)
 	_printf("testing other possible integer: %d %d\n", INT_MAX, INT_MIN);
     len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");
-    ui = (unsigned int)INT_MAX + 1024;
+    len4 = printf(NULL);
+	len3 = _printf(NULL);
+	ui = (unsigned int)INT_MAX + 1024;
     addr = (void *)0x7ffe637541f0;
-    _printf("Length:[%d, %i]\n", len, len);
-    printf("Length:[%d, %i]\n", len2, len2);
+    _printf("Length:[%d, %i, %d]\n", len, len, len3);
+    printf("Length:[%d, %i, %d]\n", len2, len2, len4);
     _printf("Negative:[%d]\n", -762534);
     printf("Negative:[%d]\n", -762534);
     _printf("Unsigned:[%u]\n", ui);
@@ -46,8 +48,8 @@ int main(void)
     printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
     _printf("Character:[%c]\n", 'H');
     printf("Character:[%c]\n", 'H');
-    _printf("String:[%s]\n", "I am a string !");
-    printf("String:[%s]\n", "I am a string !");
+    _printf("String:[%s, %s]\n", "I am a string !", NULL);
+    printf("String:[%s, %s]\n", "I am a string !", NULL);
     _printf("Address:[%p]\n", addr);
     printf("Address:[%p]\n", addr);
     len = _printf("Percent:[%%]\n");

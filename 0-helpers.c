@@ -14,7 +14,10 @@ int print_str(const char *format, int count, va_list args, int *flag)
 	char *s;
 	int retval;
 
+	count = 0;
 	s = va_arg(args, char *);
+	if (s == NULL)
+		return (print_string("(null)", flag, count));
 	s = (format[count] == 's') ? s : upper_str(s);
 	retval = print_string(s, flag, count);
 	/*free(s);*/
