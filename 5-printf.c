@@ -15,9 +15,9 @@ int _printf(const char *format, ...)
 	int returnValue, val;
 	va_list args;
 
-	va_start(args, format);
 	if (format == NULL)
 		return (-1);
+	va_start(args, format);
 	val = _vprintf(format, args);
 	va_end(args);
 
