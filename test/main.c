@@ -14,6 +14,9 @@ int main(void)
     int len2;
     unsigned int ui;
     void *addr;
+    char buff[30];
+    char *my = "+12345";
+    int f[5] = {0,0,1,0,15};
 
 	_printf("Characters: %c %c done.\n", 'a', 65);
 	_printf("Decimals: %d %ld done\n", 1977, 650000L);
@@ -44,7 +47,11 @@ int main(void)
     len2 = printf("Percent:[%%]\n");
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
-    _printf("Unknown:[%r]\n");
-    printf("Unknown:[%r]\n");
+    _printf("Unknown:[%r]\n\n", "mahadi");
+    _printf("Unknown:[%R]\n\n", "mahadi");
+
+    print_string(my, f, 1);
+signedNumberToString(234,16,buff, "X", 0);
+    _printf("\nTesting: %s\n", buff);
     return (0);
 }
