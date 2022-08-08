@@ -109,5 +109,11 @@ int main(void)
 
     printf("space and +: [% 05d, %+i, %+10d]\n", 258455, 258455, 258455);
     _printf("space and +: [% 05d, %+i, %+10d]\n", 258455, 258455, 258455);
+
+    printf("space and +: [% 05d, %+i, %+10d]\n", 255, 255, 255);
+    _printf("space and +: [% 05d, %+i, %+10d]\n", 255, 255, 255);
+    printf("width: [%6X, %6x, %10s]\n",5, -4568,"ab");
+    _printf("width: [%6X, %6x, %10s]\n",5, -4568,"ab");
+
     return (0);
 }
