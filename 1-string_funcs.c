@@ -30,11 +30,12 @@ int print_string(char *str, int *flags, int n)
 		i++;
 	count = flags[4] > i ? flags[4] : i;
 	pad = flags[2] ? '0' : ' ';
-	if (count > i && (str[0] == '+' || str[0] == '-' || str[0] == ' ') && n)
+	if (count > i &&
+			(str[0] == '+' || str[0] == '-' || str[0] == ' ') && n && flags[2])
 	{
 		_putchar(str[0]);
 		j++;
-		flags[4]--;
+		/* flags[4]--; */
 	}
 
 	/* pad right allignment */
