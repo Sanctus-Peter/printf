@@ -12,12 +12,13 @@
 int print_str(const char *format, int count, va_list args, int *flag)
 {
 	char *s;
-	const char *tmp = format;
+	int retval;
 
-	count = 0;
-	(void) tmp;
 	s = va_arg(args, char *);
-	return (print_string(s, flag, count));
+	s = (format[count] == 's') ? s : upper_str(s);
+	retval = print_string(s, flag, count);
+	/*free(s);*/
+	return (retval);
 }
 
 /**
@@ -31,10 +32,10 @@ int print_str(const char *format, int count, va_list args, int *flag)
  */
 int print_int(const char *format, int count, va_list args, int *flag)
 {
-	int64_t n;
+	long n;
 	char buffer[1024];
 
-	n = va_arg(args, int64_t);
+	n = va_arg(args, int);
 	signedNumberToString(n, DECIMAL, buffer, format, count);
 
 	return (print_string(buffer, flag, 1));

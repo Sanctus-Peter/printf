@@ -46,5 +46,8 @@ int print_addr(const char *, int, va_list, int *);
 int print_oct_bin(const char *, int, va_list, int *);
 int print_rot13(const char *, int, va_list, int *);
 int print_reverse(const char *, int, va_list, int *);
+char *upper_str(char *);
+int isPrintable(char);
+int upper_strlen(char *);
 
 #endif

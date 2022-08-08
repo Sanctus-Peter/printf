@@ -110,8 +110,9 @@ int print_char(const char *format, int count, va_list args, int *flag)
 	char ch;
 	const char *tmp = format;
 
-	count = 0;
+	(void) count;
 	(void) tmp;
+	(void) flag;
 	ch = va_arg(args, int);
 	return (_putchar(ch));
 }

@@ -126,7 +126,7 @@ char *reversed(char *s)
 	/* get the length os s */
 	while (s[x])
 		x++;
-	tmp = malloc((x +1) * sizeof(char));
+	tmp = malloc((x + 1) * sizeof(char));
 	if (!tmp)
 		return (0);
 	x--;

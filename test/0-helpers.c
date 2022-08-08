@@ -12,10 +12,13 @@
 int print_str(const char *format, int count, va_list args, int *flag)
 {
 	char *s;
+	int retval;
 
 	s = va_arg(args, char *);
 	s = (format[count] == 's') ? s : upper_str(s);
-	return (print_string(s, flag, count));
+	retval = print_string(s, flag, count);
+	/*free(s);*/
+	return (retval);
 }
 
 /**
