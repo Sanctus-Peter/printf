@@ -117,6 +117,6 @@ int main(void)
     printf("width: [%6X, %6x, %10s]\n",5, -4568,"ab");
     _printf("width: [%6X, %6x, %10s]\n",5, -4568,"ab");
     _printf("precision: [%012.4d, %.5i, %.1u]\n", 231, 4, 67);
-	printf("precision: [%012.4d, %.5i, %.1u]\n", 231, 4, 67);
+	printf("precision: [%012.4f, %.5f, %.1f]\n", 231.0, 4.0, 67.0);
     return (0);
 }
