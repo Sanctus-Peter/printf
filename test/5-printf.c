@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	if (format[0] == '%' && format[1] == '\0')
-		return (0);
+		return (-1);
 	val = _vprintf(format, args);
 	va_end(args);
 
