@@ -21,41 +21,38 @@ int _putchar(char c)
  */
 int print_string(char *str, int *flags, int n)
 {
-	int i = 0, j = 0, count;
+	int i = 0, j = 0, count, max;
 	char pad;
 
 	if (!str)
 		return (0);
 	while (str[i])
 		i++;
-	i = flags[5] ? i + flags[5] + 1 : i;
-	count = flags[4] > i ? flags[4] : i;
+	max = i > flags[5] ? i : flags[5];
+	count = flags[4] > max ? flags[4] : max;
 	pad = flags[2] ? '0' : ' ';
-	if (count > i && n && flags[2] &&
+	if (count > max && n && flags[2] &&
 			(str[0] == '+' || str[0] == '-' || str[0] == ' '))
 	{
 		_putchar(str[0]);
 		j++;
 	}
 
-	while (flags[4] > i && !flags[0])
+	while (flags[4] > max && !flags[0])
 	{
 		_putchar(pad);
 		flags[4]--;
 	}
-
-	while (str[j])
-		_putchar(str[j++]);
-
-	if (flags[5] && n)
-		_putchar('.');
-	while (flags[5] && n)
+	while (i < flags[5] && n)
 	{
 		_putchar('0');
 		flags[5]--,	flags[4]--;
 	}
+	while (str[j])
+		_putchar(str[j++]);
 
-	while (flags[4] > i && flags[0])
+
+	while (flags[4] > max && flags[0])
 	{
 		_putchar(' ');
 		flags[4]--;
