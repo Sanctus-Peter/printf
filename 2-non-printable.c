@@ -8,7 +8,7 @@
  */
 char *upper_str(char *s)
 {
-	int x = 0, i = 0, a[5] = {0, 0, 0, 0, 0};
+	int x = 0, i = 0, a[6] = {0, 0, 0, 0, 0, 0};
 	char *tmp, buff[3];
 
 	if (!s)

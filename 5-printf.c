@@ -36,7 +36,7 @@ int _printf(const char *format, ...)
 
 int _vprintf(const char *format, va_list args)
 {
-	int state = 0, flag[5] = {0, 0, 0, 0, 0}, is_long = 0, is_short = 0;
+	int state = 0, flag[6] = {0, 0, 0, 0, 0, 0}, is_long = 0, is_short = 0;
 	int count = 0, print_count = 0, identifier_printed, reset = 1;
 	int *resetPtr = &reset, *ptr = &is_long, *shortPtr = &is_short, tmp_count;
 

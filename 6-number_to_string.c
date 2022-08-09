@@ -19,7 +19,7 @@ void unsignedNumberToString(uint64_t number, int base, char *buf,
 
 	if (flags[3])
 	{
-		if (base == 8 || base == 16)
+		if (base == OCTAL || base == HEX)
 		{
 			*buf++ = '0';
 			if (base == 16)
