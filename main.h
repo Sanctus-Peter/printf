@@ -22,8 +22,9 @@
 typedef struct specifierStruct
 {
 	char *specifier;
-	int (*func)(const char *, int, va_list, int *);
+	int (*func)(const char *, int, va_list, int *, int *);
 } specifierStruct;
+
 
 int check_specifier(const char *, int, va_list, int *, int *);
 int _printf(const char *format, ...);
@@ -41,17 +42,16 @@ int _putchar(char);
 int format_specifier(int, const char *, va_list, int *,
 		int *, int *, int *, int *);
 char *reversed(char *);
-
-
 int _strlen(const char *);
-int print_char(const char *, int, va_list, int *, int *, int *);
-int print_int(const char *, int, va_list, int *, int *, int *);
-int print_str(const char *, int, va_list, int *, int *, int *);
-int print_unsigned(const char *, int, va_list, int *, int *, int *);
-int print_addr(const char *, int, va_list, int *, int *, int *);
-int print_oct_bin(const char *, int, va_list, int *, int *, int *);
-int print_rot13(const char *, int, va_list, int *, int *, int *);
-int print_reverse(const char *, int, va_list, int *, int *, int *);
+
+int print_char(const char *, int, va_list, int *, int *);
+int print_int(const char *, int, va_list, int *, int *);
+int print_str(const char *, int, va_list, int *, int *);
+int print_unsigned(const char *, int, va_list, int *, int *);
+int print_addr(const char *, int, va_list, int *, int *);
+int print_oct_bin(const char *, int, va_list, int *, int *);
+int print_rot13(const char *, int, va_list, int *, int *);
+int print_reverse(const char *, int, va_list, int *, int *);
 
 char *upper_str(char *);
 int isPrintable(char);
