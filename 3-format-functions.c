@@ -11,14 +11,20 @@
  *
  * Return: number of characters printed
  */
-int print_unsigned(const char *format, int count, va_list args, int *flag)
+int print_unsigned(const char *format, int count,
+		va_list args, int *short_long, int *flag)
 {
 	uint64_t n;
 	char buffer[1024];
 	int base;
 
 	base = (format[count] == 'u') ? DECIMAL : HEX;
-	n = va_arg(args, uint64_t);
+	if (*short_long == LONG)
+		n = va_arg(args,unsigned long int);
+	else
+		n = va_arg(args, unsigned int);
+	if (*short_long == SHORT)
+		n = (unsigned short) n;
 	unsignedNumberToString(n, base, buffer, format[count], flag);
 	return (print_string(buffer, flag, 1));
 
