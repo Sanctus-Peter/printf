@@ -49,13 +49,13 @@ int _vprintf(const char *format, va_list args)
 			if (format[count] == '%')
 				state = 1;
 			else
-			{
 				print_count += _putchar(format[count]);
-			}
 			count++;
 		}
 		else
 		{
+			if (!format[count])
+				return (print_count);
 			if (isAlpha(format[count]) || format[count] == '%')
 			{
 				identifier_printed = format_specifier(count, format, args,
