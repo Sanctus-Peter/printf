@@ -31,11 +31,13 @@ int print_string(char *str, int *flags, int n)
 	max = i > flags[5] ? i : flags[5];
 	count = flags[4] > max ? flags[4] : max;
 	pad = flags[2] ? '0' : ' ';
-	if (count > max && n && flags[2] &&
+	if ((count > max || count > i) && n && (flags[2] || flags[5]) &&
 			(str[0] == '+' || str[0] == '-' || str[0] == ' '))
 	{
 		_putchar(str[0]);
 		j++;
+		if (flags[5] >= i)
+			flags[5]++;
 	}
 
 	while (flags[4] > max && !flags[0])
@@ -50,8 +52,6 @@ int print_string(char *str, int *flags, int n)
 	}
 	while (str[j])
 		_putchar(str[j++]);
-
-
 	while (flags[4] > max && flags[0])
 	{
 		_putchar(' ');

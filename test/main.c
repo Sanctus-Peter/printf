@@ -125,7 +125,7 @@ int main(void)
 	len1 = _printf("");
 	printf("Empty: [%d]\n", len2);
 	_printf("Empty: [%d]\n", len1);
-_printf("Precision trick: [%.*d]\n",6,10);
-printf("Precision trick: [%.*d]\n",6,10);
+_printf("Precision trick: [%.*d]\n",6,-10);
+printf("Precision trick: [%.*d]\n",6,-10);
     return (0);
 }
