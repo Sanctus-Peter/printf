@@ -9,10 +9,12 @@
  *
  * Return: number of characters printed
  */
-int print_str(const char *format, int count, va_list args, int *flag)
+int print_str(const char *format, int count, va_list args,
+		int *short_long, int *flag)
 {
 	char *s;
 	int retval;
+	(void)short_long;
 
 	s = va_arg(args, char *);
 	if (s == NULL)
@@ -34,12 +36,18 @@ int print_str(const char *format, int count, va_list args, int *flag)
  *
  * Return: number of characters printed
  */
-int print_int(const char *format, int count, va_list args, int *flag)
+int print_int(const char *format, int count, va_list args,
+		int *short_long, int *flag)
 {
-	long n;
+	long int n;
 	char buffer[1024];
 
-	n = va_arg(args, int);
+	if (*short_long == LONG)
+		n = va_arg(args, long int);
+	else
+		n = va_arg(args, int);
+	if (*short_long == SHORT)
+		n = (short) n;
 	signedNumberToString(n, DECIMAL, buffer, format[count], flag);
 	return (print_string(buffer, flag, 1));
 
