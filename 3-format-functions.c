@@ -8,6 +8,7 @@
  * @count: current index
  * @args: argument list
  * @flag: flags array
+ * @short_long: length modifier
  *
  * Return: number of characters printed
  */
@@ -20,7 +21,7 @@ int print_unsigned(const char *format, int count,
 
 	base = (format[count] == 'u') ? DECIMAL : HEX;
 	if (*short_long == LONG)
-		n = va_arg(args,unsigned long int);
+		n = va_arg(args, unsigned long int);
 	else
 		n = va_arg(args, unsigned int);
 	if (*short_long == SHORT)
@@ -37,6 +38,7 @@ int print_unsigned(const char *format, int count,
  * @count: current index
  * @args: argument list
  * @flag: flags array
+ * @short_long: length modifier
  *
  * Return: number of characters printed
  */
@@ -64,6 +66,7 @@ int print_addr(const char *format, int count, va_list args,
  * @count: current index
  * @args: argument list
  * @flag: flags array
+ * @short_long: length modifier
  *
  * Return: number of characters printed
  */
@@ -92,6 +95,7 @@ int print_oct_bin(const char *format, int count, va_list args,
  * @count: current index
  * @args: argument list
  * @flag: flags array
+ * @short_long: length modifier
  *
  * Return: number of characters printed
  */
@@ -118,6 +122,7 @@ int print_rot13(const char *format, int count, va_list args,
  * @count: current index
  * @args: argument list
  * @flag: flags array
+ * @short_long: length modifier
  *
  * Return: number of characters printed
  */

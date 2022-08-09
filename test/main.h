@@ -50,5 +50,6 @@ char *upper_str(char *);
 int isPrintable(char);
 int upper_strlen(char *);
 int getDigitsValue(const char *fmt, int *j, int);
+int _strlen(const char *s);
 
 #endif

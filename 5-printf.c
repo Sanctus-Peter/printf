@@ -18,8 +18,8 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	if (format == NULL)
 		return (-1);
-	if (format[0] == '%' && format[1] == '\0')
-		return (0);
+	if (format[0] == '%' && _strlen(format) == 1)
+		return (-1);
 	val = _vprintf(format, args);
 	va_end(args);
 
@@ -38,9 +38,9 @@ int _printf(const char *format, ...)
 
 int _vprintf(const char *format, va_list args)
 {
-	int state = 0, flag[6] = {0, 0, 0, 0, 0, 0}, is_long = 0, is_short = 0;
-	int count = 0, print_count = 0, identifier_printed, reset = 1; 
-	int tmp_count, short_long = 0;
+	int state = 0, flag[6] = {0, 0, 0, 0, 0, 0}, is_long = 0, is_short = 0,
+	    count = 0, print_count = 0, identifier_printed, reset = 1,
+	    tmp_count, short_long = 0;
 
 	while (format[count])
 	{

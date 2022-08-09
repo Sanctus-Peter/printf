@@ -9,11 +9,12 @@
  * @ptr_is_long: to set the long variable to 1
  * @ptr_is_short: to set variable to short
  * @flags: flag
+ * @short_long: length modifier
  * Return: the length of string printed
  */
 
 int format_specifier(int count, const char *format, va_list args, int *reset,
-		int *ptr_is_long, int *ptr_is_short, int *flags)
+		int *ptr_is_long, int *ptr_is_short, int *short_long, int *flags)
 {
 	int i, print_count = 0;
 	char *testDefault = "sdicuSpxXobprR";
@@ -22,14 +23,14 @@ int format_specifier(int count, const char *format, va_list args, int *reset,
 	{
 		case 'l':
 			{
-				*ptr_is_long = 1;
-				*reset = 0;
+				*ptr_is_long = 1, *reset = 0;
+				*short_long = LONG;
 				goto end;
 			}
 		case 'h':
 			{
-				*ptr_is_short = 1;
-				*reset = 0;
+				*ptr_is_short = 1, *reset = 0;
+				*short_long = SHORT;
 				goto end;
 			}
 		case '%':
@@ -50,7 +51,7 @@ int format_specifier(int count, const char *format, va_list args, int *reset,
 			}
 	}
 stop:
-	print_count += check_specifier(format, count, args, flags);
+	print_count += check_specifier(format, count, args, flags, short_long);
 end:
 	return (print_count);
 }
@@ -61,10 +62,12 @@ end:
  * @count: current position of string
  * @args: arguement retrieved
  * @flags: flag
+ * @short_long: length modifier
  * Return: length of string printed
  */
 
-int check_specifier(const char *format, int count, va_list args, int *flags)
+int check_specifier(const char *format, int count, va_list args,
+		int *flags, int *short_long)
 {
 	int func_index;
 	char specifierFormat = format[count];
@@ -90,7 +93,8 @@ int check_specifier(const char *format, int count, va_list args, int *flags)
 			func_index++)
 	{
 		if (specifierFunc[func_index].specifier[0] == specifierFormat)
-			return (specifierFunc[func_index].func(format, count, args, flags));
+			return (specifierFunc[func_index].func(format, count,
+						args, short_long, flags));
 	}
 	return (0);
 }
@@ -101,17 +105,20 @@ int check_specifier(const char *format, int count, va_list args, int *flags)
  * @format: formats in str
  * @count: current index
  * @args: argument list
+ * @short_long: length modifier
  * @flag: flags array
  *
  * Return: number of characters printed
  */
-int print_char(const char *format, int count, va_list args, int *flag)
+int print_char(const char *format, int count, va_list args,
+		int *short_long, int *flag)
 {
 	uint64_t ch;
 	const char *tmp = format;
 
 	(void) count;
 	(void) tmp;
+	(void) short_long;
 	(void) flag;
 	ch = va_arg(args, uint64_t);
 	return (_putchar(ch));

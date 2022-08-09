@@ -6,6 +6,7 @@
  * @count: current index
  * @args: argument list
  * @flag: flags array
+ * @short_long: length modifier
  *
  * Return: number of characters printed
  */
@@ -33,6 +34,7 @@ int print_str(const char *format, int count, va_list args,
  * @count: current index
  * @args: argument list
  * @flag: flags array
+ * @short_long: length modifier
  *
  * Return: number of characters printed
  */

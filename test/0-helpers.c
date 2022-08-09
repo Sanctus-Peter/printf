@@ -6,13 +6,16 @@
  * @count: current index
  * @args: argument list
  * @flag: flags array
+ * @short_long: length modifier
  *
  * Return: number of characters printed
  */
-int print_str(const char *format, int count, va_list args, int *flag)
+int print_str(const char *format, int count, va_list args,
+		int *short_long, int *flag)
 {
 	char *s;
 	int retval;
+	(void)short_long;
 
 	s = va_arg(args, char *);
 	if (s == NULL)
@@ -31,15 +34,22 @@ int print_str(const char *format, int count, va_list args, int *flag)
  * @count: current index
  * @args: argument list
  * @flag: flags array
+ * @short_long: length modifier
  *
  * Return: number of characters printed
  */
-int print_int(const char *format, int count, va_list args, int *flag)
+int print_int(const char *format, int count, va_list args,
+		int *short_long, int *flag)
 {
-	long n;
+	long int n;
 	char buffer[1024];
 
-	n = va_arg(args, int);
+	if (*short_long == LONG)
+		n = va_arg(args, long int);
+	else
+		n = va_arg(args, int);
+	if (*short_long == SHORT)
+		n = (short) n;
 	signedNumberToString(n, DECIMAL, buffer, format[count], flag);
 	return (print_string(buffer, flag, 1));
 
@@ -92,7 +102,8 @@ int setFlags(const char *fmt, int *flags, int j, va_list args)
 
 	flags[0] = flags[1] = flags[2] =
 		flags[3] = flags[4] = flags[5] = 0;
-	while ((!isDigit(fmt[i]) && !isAlpha(fmt[i]) && fmt[i] != '.') || fmt[i] == '0')
+	while ((!isDigit(fmt[i]) && !isAlpha(fmt[i]) && fmt[i] != '.') ||
+			fmt[i] == '0')
 	{
 		switch (fmt[i])
 		{
