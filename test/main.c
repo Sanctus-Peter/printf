@@ -118,9 +118,12 @@ int main(void)
     _printf("width: [%6X, %6x, %10s]\n",5, -4568,"ab");
     _printf("precision: [%012.4d, %.5i, %.1u]\n", 231, 4, 67);
 	printf("precision: [%012.4f, %.5f, %.1f]\n", 231.0, 4.0, 67.0);
-	len1 = _printf("%\n");
+	len1 = _printf("%");
 /*	len2 = printf("%\n"); */
 	_printf("Percent len: [%d]\n", len1);
 	printf("Percent len: [%d]\n", len1);
+	len1 = _printf("");
+	printf("Empty: [%d]\n", len2);
+	_printf("Empty: [%d]\n", len1);
     return (0);
 }
