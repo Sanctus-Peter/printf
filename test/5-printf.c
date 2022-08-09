@@ -39,8 +39,8 @@ int _printf(const char *format, ...)
 int _vprintf(const char *format, va_list args)
 {
 	int state = 0, flag[6] = {0, 0, 0, 0, 0, 0}, is_long = 0, is_short = 0;
-	int count = 0, print_count = 0, identifier_printed, reset = 1;
-	int *resetPtr = &reset, *ptr = &is_long, *shortPtr = &is_short, tmp_count;
+	int count = 0, print_count = 0, identifier_printed, reset = 1; 
+	int tmp_count, short_long = 0;
 
 	while (format[count])
 	{
@@ -59,10 +59,10 @@ int _vprintf(const char *format, va_list args)
 			if (isAlpha(format[count]) || format[count] == '%')
 			{
 				identifier_printed = format_specifier(count, format, args,
-						resetPtr, ptr, shortPtr,  flag);
+						&reset, &is_long, &is_short, &short_long, flag);
 				if (reset == 1)
 				{
-					state = is_long = is_short = 0;
+					state = is_long = is_short = short_long = 0;
 				}
 				else
 					reset = 1;
