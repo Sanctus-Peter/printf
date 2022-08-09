@@ -38,9 +38,9 @@ int _printf(const char *format, ...)
 
 int _vprintf(const char *format, va_list args)
 {
-	int state = 0, flag[6] = {0, 0, 0, 0, 0, 0}, is_long = 0, is_short = 0;
-	int count = 0, print_count = 0, identifier_printed, reset = 1; 
-	int tmp_count, short_long = 0;
+	int state = 0, flag[6] = {0, 0, 0, 0, 0, 0}, is_long = 0, is_short = 0,
+	    count = 0, print_count = 0, identifier_printed, reset = 1,
+	    tmp_count, short_long = 0;
 
 	while (format[count])
 	{
