@@ -9,6 +9,7 @@
  * @ptr_is_long: to set the long variable to 1
  * @ptr_is_short: to set variable to short
  * @flags: flag
+ * @short_long: length modifier
  * Return: the length of string printed
  */
 
@@ -61,6 +62,7 @@ end:
  * @count: current position of string
  * @args: arguement retrieved
  * @flags: flag
+ * @short_long: length modifier
  * Return: length of string printed
  */
 
@@ -103,11 +105,12 @@ int check_specifier(const char *format, int count, va_list args,
  * @format: formats in str
  * @count: current index
  * @args: argument list
+ * @short_long: length modifier
  * @flag: flags array
  *
  * Return: number of characters printed
  */
-int print_char(const char *format, int count, va_list args, 
+int print_char(const char *format, int count, va_list args,
 		int *short_long, int *flag)
 {
 	uint64_t ch;
