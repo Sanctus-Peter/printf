@@ -34,9 +34,6 @@ unsigned int convert_di(va_list args, buffer_t *output,
 		d = va_arg(args, int);
 	if (len == SHORT)
 		d = (short)d;
-
-	/* Handle space flag */
-	if (SPACE_FLAG == 1 && d >= 0)
 		ret += _memcpy(output, &space, 1);
 
 	if (prec <= 0 && NEG_FLAG == 0) /* Handle width  */
@@ -53,10 +50,8 @@ unsigned int convert_di(va_list args, buffer_t *output,
 		count += (PLUS_FLAG == 1 && d >= 0) ? 1 : 0;
 		count += (SPACE_FLAG == 1 && d >= 0) ? 1 : 0;
 
-		/* Handle plus flag when zero flag is active */
 		if (ZERO_FLAG == 1 && PLUS_FLAG == 1 && d >= 0)
 			ret += _memcpy(output, &plus, 1);
-		/*Print negative sign when zero flag is active */
 		if (ZERO_FLAG == 1 && d < 0)
 			ret += _memcpy(output, &neg, 1);
 
@@ -65,10 +60,8 @@ unsigned int convert_di(va_list args, buffer_t *output,
 			ret += _memcpy(output, &pad, 1);
 	}
 
-	/* Print negative sign when zero flag is not active */
 	if (ZERO_FLAG == 0 && d < 0)
 		ret += _memcpy(output, &neg, 1);
-	/* Handle plus flag when zero flag is not active */
 	if (ZERO_FLAG == 0 && (PLUS_FLAG == 1 && d >= 0))
 		ret += _memcpy(output, &plus, 1);
 
