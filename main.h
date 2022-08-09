@@ -43,6 +43,7 @@ int format_specifier(int, const char *, va_list, int *, int *,
 		int *, int *, int *);
 char *reversed(char *);
 
+int _strlen(const char *);
 int print_char(const char *, int, va_list, int *, int *);
 int print_int(const char *, int, va_list, int *, int *);
 int print_str(const char *, int, va_list, int *, int *);
