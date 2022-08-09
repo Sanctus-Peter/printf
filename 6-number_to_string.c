@@ -78,13 +78,14 @@ void signedNumberToString(int64_t number, int base, char *buf,
  * getDigitsValue - gets the value of digits
  * @fmt: pointer to string
  * @res: start index
+ * @index: count value
  *
  * Return: value
  */
 int getDigitsValue(const char *fmt, int *res, int index)
 {
 	int i = index;
-	
+
 	while (isDigit(fmt[i]))
 	{
 		*res *= 10;
