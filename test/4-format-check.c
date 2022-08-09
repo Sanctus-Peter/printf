@@ -113,13 +113,13 @@ int check_specifier(const char *format, int count, va_list args,
 int print_char(const char *format, int count, va_list args,
 		int *short_long, int *flag)
 {
-	uint64_t ch;
+	char ch;
 	const char *tmp = format;
 
 	(void) count;
 	(void) tmp;
 	(void) short_long;
 	(void) flag;
-	ch = va_arg(args, uint64_t);
+	ch = (char)va_arg(args, int);
 	return (_putchar(ch));
 }
