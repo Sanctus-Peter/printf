@@ -16,7 +16,7 @@ int format_specifier(int count, const char *format, va_list args, int *reset,
 		int *ptr_is_long, int *ptr_is_short, int *flags)
 {
 	int i, print_count = 0;
-	char ch, *testDefault = "sdicuSpxXobprR";
+	char *testDefault = "sdicuSpxXobprR";
 
 	switch (format[count])
 	{
