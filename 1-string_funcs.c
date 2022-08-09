@@ -47,9 +47,9 @@ int print_string(char *str, int *flags, int n)
 	while (str[j])
 		_putchar(str[j++]);
 
-	if (flags[5])
+	if (flags[5] && n)
 		_putchar('.');
-	while (flags[5])
+	while (flags[5] && n)
 	{
 		_putchar('0');
 		flags[5]--,	flags[4]--;

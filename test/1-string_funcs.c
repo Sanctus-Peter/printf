@@ -36,34 +36,30 @@ int print_string(char *str, int *flags, int n)
 	{
 		_putchar(str[0]);
 		j++;
-		/* flags[4]--; */
 	}
 
-	/* pad right allignment */
 	while (flags[4] > i && !flags[0])
 	{
 		_putchar(pad);
 		flags[4]--;
 	}
-	/* print string */
+
 	while (str[j])
 		_putchar(str[j++]);
-	/* precision */
-	if (flags[5])
+
+	if (flags[5] && n)
 		_putchar('.');
-	while (flags[5])
+	while (flags[5] && n)
 	{
 		_putchar('0');
-		flags[5]--;
-		flags[4]--;
+		flags[5]--,	flags[4]--;
 	}
-	/* pad left alligmment */
+
 	while (flags[4] > i && flags[0])
 	{
 		_putchar(' ');
 		flags[4]--;
 	}
-
 	return (count);
 }
 
