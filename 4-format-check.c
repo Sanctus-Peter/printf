@@ -45,8 +45,7 @@ int format_specifier(int count, const char *format, va_list args, int *reset,
 						goto stop;
 				}
 				print_count += _putchar('%');
-				ch = va_arg(args, int);
-				print_count += _putchar(ch);
+				print_count += _putchar(format[count]);
 				goto end;
 			}
 	}

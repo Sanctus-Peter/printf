@@ -121,5 +121,6 @@ int main(void)
 	len1 = _printf("%");
 /*	len2 = printf("%\n"); */
 	_printf("Percent len: [%d]\n", len1);
+	_printf("%v\n");
     return (0);
 }
