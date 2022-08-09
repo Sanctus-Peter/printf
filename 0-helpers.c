@@ -134,8 +134,7 @@ int setFlags(const char *fmt, int *flags, int j, va_list args)
 		i++;
 		if (fmt[i] == '*')
 			flags[5] = va_arg(args, int);
-		else
-			i += getDigitsValue(fmt, &flags[5], i);
+		i += getDigitsValue(fmt, &flags[5], i);
 	}
 	return (i - j);
 }

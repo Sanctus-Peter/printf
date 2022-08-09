@@ -123,8 +123,6 @@ int setFlags(const char *fmt, int *flags, int j, va_list args)
 		case '*':
 			flags[4] = va_arg(args, int);
 			break;
-		default:
-			break;
 		}
 		i++;
 	}
@@ -134,7 +132,10 @@ int setFlags(const char *fmt, int *flags, int j, va_list args)
 	if (fmt[i] == '.')
 	{
 		i++;
-		i += getDigitsValue(fmt, &flags[5], i);
+		if (fmt[i] == '*')
+			flags[5] = va_arg(args, int);
+		else
+			i += getDigitsValue(fmt, &flags[5], i);
 	}
 	return (i - j);
 }
