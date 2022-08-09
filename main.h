@@ -11,6 +11,9 @@
 #define OCTAL 8
 #define BINARY 2
 
+#define SHORT 2
+#define LONG 1
+
 /**
  * struct specifierStruct - struct to hold all specifier
  * @specifier: character pointer
@@ -22,7 +25,7 @@ typedef struct specifierStruct
 	int (*func)(const char *, int, va_list, int *);
 } specifierStruct;
 
-int check_specifier(const char *, int, va_list, int *);
+int check_specifier(const char *, int, va_list, int *, int *);
 int _printf(const char *format, ...);
 int isDigit(char);
 int isAlpha(char);
@@ -35,19 +38,20 @@ int _printf(const char *, ...);
 void signedNumberToString(int64_t, int, char *, char, int *);
 void unsignedNumberToString(uint64_t, int, char *, char, int *);
 int _putchar(char);
-int format_specifier(int, const char *, va_list, int *, int *,  int *, int *);
+int format_specifier(int, const char *, va_list, int *,
+		int *, int *, int *, int *);
 char *reversed(char *);
 
 
 int _strlen(const char *);
-int print_char(const char *, int, va_list, int *, int *);
-int print_int(const char *, int, va_list, int *, int *);
-int print_str(const char *, int, va_list, int *, int *);
-int print_unsigned(const char *, int, va_list, int *, int *);
-int print_addr(const char *, int, va_list, int *, int *);
-int print_oct_bin(const char *, int, va_list, int *, int *);
-int print_rot13(const char *, int, va_list, int *, int *);
-int print_reverse(const char *, int, va_list, int *, int *);
+int print_char(const char *, int, va_list, int *, int *, int *);
+int print_int(const char *, int, va_list, int *, int *, int *);
+int print_str(const char *, int, va_list, int *, int *, int *);
+int print_unsigned(const char *, int, va_list, int *, int *, int *);
+int print_addr(const char *, int, va_list, int *, int *, int *);
+int print_oct_bin(const char *, int, va_list, int *, int *, int *);
+int print_rot13(const char *, int, va_list, int *, int *, int *);
+int print_reverse(const char *, int, va_list, int *, int *, int *);
 
 char *upper_str(char *);
 int isPrintable(char);
