@@ -73,7 +73,7 @@ int print_addr(const char *format, int count, va_list args,
 int print_oct_bin(const char *format, int count, va_list args,
 		int *short_long, int *flag)
 {
-	unsigned long int n;
+	uint64_t n;
 	char buffer[1024];
 	int base;
 
