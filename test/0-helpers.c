@@ -118,9 +118,15 @@ int setFlags(const char *fmt, int *flags, int j, va_list args)
 			flags[4] = va_arg(args, int);
 		i++;
 	}
-	if (isDigit(fmt[i]))
-		flags[4] = 0;
-	i += getDigitsValue(fmt, &flags[4], i);
+	if (flags[4])
+	{
+		if (flags[4] <= 0)
+			flags[4] = 0;
+	}
+	else
+	{
+		i += getDigitsValue(fmt, &flags[4], i);
+	}
 	if (fmt[i] == '.')
 	{
 		i++;
