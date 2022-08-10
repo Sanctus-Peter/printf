@@ -102,7 +102,7 @@ int setFlags(const char *fmt, int *flags, int j, va_list args)
 
 	flags[0] = flags[1] = flags[2] =
 		flags[3] = flags[4] = flags[5] = 0;
-	while ((!isDigit(fmt[i]) && !isAlpha(fmt[i]) && fmt[i] != '.') ||
+	while ((!isDigit(fmt[i]) && !isAlpha(fmt[i]) && fmt[i] != '.' && fmt[i] != '*') ||
 			fmt[i] == '0')
 	{
 		c = fmt[i];
@@ -114,28 +114,13 @@ int setFlags(const char *fmt, int *flags, int j, va_list args)
 			flags[2] = 1;
 		else if (c == '#')
 			flags[3] = 1;
-		else if (c == '*')
-			flags[4] = va_arg(args, int);
 		i++;
 	}
-	if (flags[4])
-	{
-		if (flags[4] <= 0)
-			flags[4] = 0;
-	}
-	else
-	{
-		i += getDigitsValue(fmt, &flags[4], i);
-	}
+	i += getDigitsValue(fmt, &flags[4], i, args);
 	if (fmt[i] == '.')
 	{
 		i++;
-		i += getDigitsValue(fmt, &flags[5], i);
-		if (fmt[i] == '*')
-		{
-			flags[5] = va_arg(args, int);
-			i++;
-		}
+		i += getDigitsValue(fmt, &flags[5], i, args);
 	}
 	return (i - j);
 }

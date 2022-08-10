@@ -56,7 +56,7 @@ int print_reverse(const char *, int, va_list, int *, int *);
 char *upper_str(char *);
 int isPrintable(char);
 int upper_strlen(char *);
-int getDigitsValue(const char *fmt, int *j, int);
+int getDigitsValue(const char *fmt, int *j, int, va_list);
 int _strlen(const char *s);
 
 #endif

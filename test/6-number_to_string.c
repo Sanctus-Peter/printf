@@ -79,15 +79,25 @@ void signedNumberToString(int64_t number, int base, char *buf,
  * @fmt: pointer to string
  * @res: start index
  * @index: count value
+ * @args: arguments list
  *
  * Return: value
  */
-int getDigitsValue(const char *fmt, int *res, int index)
+int getDigitsValue(const char *fmt, int *res, int index, va_list args)
 {
 	int i = index;
 
-	while (isDigit(fmt[i]))
+	while (isDigit(fmt[i]) || fmt[i] == '*')
 	{
+		if (fmt[i] == '*')
+		{
+			i++;
+			*res = va_arg(args, int);
+			if (*res <= 0)
+				*res = 0;
+			return (i - index);
+			
+		}
 		*res *= 10;
 		*res += fmt[i++] - '0';
 	}
