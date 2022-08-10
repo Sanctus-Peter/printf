@@ -18,6 +18,8 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	if (format == NULL)
 		return (-1);
+	if (!format[0])
+		return (0);
 	if (format[0] == '%' && _strlen(format) == 1)
 		return (-1);
 	val = _vprintf(format, args);
