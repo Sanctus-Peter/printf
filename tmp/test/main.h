@@ -1,62 +1,61 @@
-#ifndef MAIN_H
-#define MAIN_H
-#include <unistd.h>
+#ifndef _MAIN_H_
+#define _MAIN_H_
+
 #include <stdarg.h>
-#include <stdint.h>
+#include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
-
-#define DECIMAL 10
-#define HEX 16
-#define OCTAL 8
-#define BINARY 2
-
-#define SHORT 2
-#define LONG 1
 
 /**
- * struct specifierStruct - struct to hold all specifier
- * @specifier: character pointer
- * @func: callback funtion
+ * struct print - struct for printer functions
+ * @type_arg: identifier
+ * @f: pointer to a printer functions
+ *
+ * Description: struct that stores pointers to a
+ * printer functions.
  */
-typedef struct specifierStruct
+typedef struct print
 {
-	char *specifier;
-	int (*func)(const char *, int, va_list, int *, int *);
-} specifierStruct;
+	char *type_arg;
+	int (*f)(va_list, char *, unsigned int);
+} print_t;
 
-
-int check_specifier(const char *, int, va_list, int *, int *);
 int _printf(const char *format, ...);
-int isDigit(char);
-int isAlpha(char);
-int setFlags(const char *, int *, int, va_list);
-int print_string(char *, int *, int);
-char *rot13(char *s);
-int get_index(char *, char);
-int _vprintf(const char *, va_list);
-int _printf(const char *, ...);
-void signedNumberToString(int64_t, int, char *, char, int *);
-void unsignedNumberToString(uint64_t, int, char *, char, int *);
-int _putchar(char);
-int format_specifier(int, const char *, va_list, int *,
-		int *, int *, int *, int *);
-char *reversed(char *);
-int _strlen(const char *);
-
-int print_char(const char *, int, va_list, int *, int *);
-int print_int(const char *, int, va_list, int *, int *);
-int print_str(const char *, int, va_list, int *, int *);
-int print_unsigned(const char *, int, va_list, int *, int *);
-int print_addr(const char *, int, va_list, int *, int *);
-int print_oct_bin(const char *, int, va_list, int *, int *);
-int print_rot13(const char *, int, va_list, int *, int *);
-int print_reverse(const char *, int, va_list, int *, int *);
-
-char *upper_str(char *);
-int isPrintable(char);
-int upper_strlen(char *);
-int getDigitsValue(const char *fmt, int *j, int, va_list);
-int _strlen(const char *s);
+int print_prg(va_list __attribute__((unused)), char *, unsigned int);
+int print_chr(va_list arguments, char *buf, unsigned int ibuf);
+int print_str(va_list arguments, char *buf, unsigned int ibuf);
+int print_int(va_list arguments, char *buf, unsigned int ibuf);
+int print_bnr(va_list arguments, char *buf, unsigned int ibuf);
+int print_unt(va_list arguments, char *buf, unsigned int ibuf);
+int print_oct(va_list arguments, char *buf, unsigned int ibuf);
+int print_hex(va_list arguments, char *buf, unsigned int ibuf);
+int print_upx(va_list arguments, char *buf, unsigned int ibuf);
+int print_usr(va_list arguments, char *buf, unsigned int ibuf);
+int print_add(va_list arguments, char *buf, unsigned int ibuf);
+int print_rev(va_list arguments, char *buf, unsigned int ibuf);
+int print_rot(va_list arguments, char *buf, unsigned int ibuf);
+int prinlint(va_list arguments, char *buf, unsigned int ibuf);
+int prinlunt(va_list arguments, char *buf, unsigned int ibuf);
+int prinloct(va_list arguments, char *buf, unsigned int ibuf);
+int prinlhex(va_list arguments, char *buf, unsigned int ibuf);
+int prinlupx(va_list arguments, char *buf, unsigned int ibuf);
+int prinhint(va_list arguments, char *buf, unsigned int ibuf);
+int prinhunt(va_list arguments, char *buf, unsigned int ibuf);
+int prinhoct(va_list arguments, char *buf, unsigned int ibuf);
+int prinhhex(va_list arguments, char *buf, unsigned int ibuf);
+int prinhupx(va_list arguments, char *buf, unsigned int ibuf);
+int prinpint(va_list arguments, char *buf, unsigned int ibuf);
+int prinnoct(va_list arguments, char *buf, unsigned int ibuf);
+int prinnhex(va_list arguments, char *buf, unsigned int ibuf);
+int prinnupx(va_list arguments, char *buf, unsigned int ibuf);
+int prinsint(va_list arguments, char *buf, unsigned int ibuf);
+int (*get_print_func(const char *s, int index))(va_list, char *, unsigned int);
+int ev_print_func(const char *s, int index);
+unsigned int handl_buf(char *buf, char c, unsigned int ibuf);
+int print_buf(char *buf, unsigned int nbuf);
+char *fill_binary_array(char *binary, long int int_in, int isneg, int limit);
+char *fill_oct_array(char *bnr, char *oct);
+char *fill_long_oct_array(char *bnr, char *oct);
+char *fill_short_oct_array(char *bnr, char *oct);
+char *fill_hex_array(char *bnr, char *hex, int isupp, int limit);
 
 #endif
