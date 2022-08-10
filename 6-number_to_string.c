@@ -96,7 +96,7 @@ int getDigitsValue(const char *fmt, int *res, int index, va_list args)
 			if (*res <= 0)
 				*res = 0;
 			return (i - index);
-			
+
 		}
 		*res *= 10;
 		*res += fmt[i++] - '0';
