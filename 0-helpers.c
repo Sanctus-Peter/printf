@@ -20,8 +20,7 @@ int print_str(const char *format, int count, va_list args,
 	s = va_arg(args, char *);
 	if (s == NULL)
 		return (write(1, "(null)", 6));
-	else if (*s == '\0')
-		return (-1);
+	
 	if (format[count] == 's')
 		return (print_string(s, flag, 0));
 	s = upper_str(s);
